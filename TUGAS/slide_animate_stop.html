@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" type="jpg/png" href="https://lokalise.com/blog/wp-content/uploads/2019/05/1082.png">
+	<title>jQuery!!! | iyasmzn</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style type="text/css">
+		*{font-family: sans-serif;}
+		#button-icon,#button-icon2{width: 40px;}#button-icon div,#button-icon2 div{width: 100%;height: 5px;background-color: white;margin-bottom: 5px;border-radius: 10px;transition: all 0.3s;}#button-icon:hover,#button-icon2:hover{cursor: pointer;}#button-icon:hover div,#button-icon2:hover div{background-color: lightgray;}#button{position: absolute;z-index: 2;width: auto;background-color: gray;padding: 20px 0px;display: none;}#button div{color:white;width: 100%;padding: 10px;}
+		#slideUp:hover,#slideDown:hover,#toggle:hover{background-color: white;color: tomato;cursor: pointer;}#face{width: 100%;height: 220px;position: relative;display: flex;justify-content: space-around;top: 10px;}#eyes1,#eyes2{width: 200px;height: 200px;border-radius: 300px;background-color: tomato;position: relative;transition: all 0.5s;}#mouth1 {margin-top: 10px;}#mouth1,#mouth2{width: 100%; box-sizing: border-box; background-color: tomato;height: 20px;border-radius: 25px 25px 0 0;border-bottom: 3px solid white;}#up-down{width: 400px; box-sizing: border-box;position: absolute;left: 50%;transform: translateX(-50%);top: 100%;}#mouth2{border-radius: 0 0 25px 25px;}#up-down-main1,#up-down-main2{width: 100%;height: 300px;background-color: black;background-size: cover;background-position: center;display: none;box-sizing: border-box;border: 3px solid white;border-top: none;position: relative;z-index: 100;}#up-down-main1{background-image: url('https://images6.alphacoders.com/103/1037400.png');}#up-down-main2{background-image: url('https://images3.alphacoders.com/103/thumb-1920-1031378.png');}
+		#animate-button-back:hover{cursor: pointer;color: tomato!important;}#animate-button-play:hover{cursor: pointer;border-left: 30px solid skyblue!important;}#animation-box{width: 100%;box-sizing: border-box;position: relative;height: 565px;display: block;background-color: #d4f9ff;padding-top: 40px;z-index: -99;}#tiang{width: 0px;height: 0px;background-color: white;position: relative;transition: background-color 0.7s 7.3s;z-index: 1;display: block;}#grass{width: 0%;height: 100px;background-color: #008504;position: absolute;bottom: 0px;z-index: -5;}.flag{width: 0px;height: 60px;position: relative;top: 280px;}#animate-button-flag-up:hover,#animate-button-flag-down:hover,#animate-button-flag-toggle:hover{color: red!important;transition: all 0.3s;cursor: pointer;}
+		#dasar-tiang{width: 7px;height: 100px;background-color: black;position: absolute;top: 0px;display: none;z-index: 4;}
+		.bld{background-color: gray;position: absolute;bottom: 0;z-index: -7;display: flex;flex-flow: row wrap;justify-content: space-around;box-sizing: border-box;overflow: hidden;}
+		.bld-1{width:100px;height: 200px;background-color: lightgray;z-index: -7;padding: 13px 7px 100px 7px;} 
+		.bld-2{width: 150px;height: 450px;left: 80px;z-index: -8;padding: 25px 15px 100px 15px;}
+		.bld-3{width: 60px;height: 350px;left: 0px;z-index: -8;padding: 15px 2px 100px 0px;}
+		.bld-4{width: 90px;height: 310px;left: 220px;z-index: -8;padding: 10px 2px 100px 5px;background-color: lightgray;}
+		.bld-hide{height: 0px;bottom: -25px;opacity: 0;}
+		.wdw {background-color: white;transition: box-shadow 0.3s;}
+		.wdw-s {width: 15px;height: 15px;margin: 5px;}
+		.wdw-m {width: 25px;height: 25px;margin: 5px;}
+		.bld:hover > div {background-color: #fff;box-shadow: 0px 0px 10px white;}
+		.pst-mddl{left: 50%;transform: translateX(-50%);}
+		.mns {position: absolute;bottom: 100px;right: 100px;}
+		.mns-btm1 {width: 220px;height: 12px;background-color: gray;position: relative;}
+		.mns-btm2 {width: 0px;height: 0;border-top: 30px solid gray;border-right: 30px solid transparent;border-left: 30px solid transparent;position: absolute;bottom: 12px;opacity:0;}
+		.mns-mddl {width: 40px;height: 330px;background-color: lightgray;position: absolute;bottom: 42px;}
+		.mns-top {width: 70px;height: 10px;background-color: gray;position: absolute;bottom: 372px;}
+		.mns-rnd {width: 40px;height: 60px;background-color: yellow;position: absolute;bottom: 365px;border-radius: 50%;z-index: -1;}
+		.mns-trg {width: 0;height: 0;border-left: 5px solid transparent;border-right: 5px solid transparent;border-bottom: 20px solid yellow;position: absolute;bottom: 420px;z-index: -2;opacity: 0;}
+		.mns-hide {height: 0;}
+	</style>
+</head>
+<body>
+	<!-- SLIDE DOWN and UP -->
+<div style="width: 100%;height: 420px;border: 3px solid black;box-sizing: border-box;">
+	<div style="width: 100%;background-color: black;padding: 10px;box-sizing: border-box;display: flex;flex-flow: row wrap;">
+		<div id="button-icon">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div style="color: white;width: 14%;text-align: left;padding-left: 10px;font-size: 12px;"><-- Slide Button</div>
+		<div style="color: white;width: 60%;text-align: center;color: tomato;">jQuery Slide</div>
+	</div>
+	<div id="button">
+		<div id="slideDown">Aaaa</div>
+		<div id="slideUp">Mmmm</div>
+		<div id="toggle">Aammaammaamm</div>
+	</div>
+	<div id="face">
+		<div id="eyes1"></div>
+		<div id="eyes2"></div>
+		<div id="up-down">
+			<div id="mouth1"></div>
+			<div id="up-down-main1"></div>
+			<div id="up-down-main2"></div>
+			<div id="mouth2"></div>
+		</div>
+	</div>
+</div>
+<!-- ANIMATE -->
+<div style="border: 3px solid black;border-top: none;height: 620px;position: relative;z-index: 1;">
+	<div id="animate-button" style="display:flex;justify-content: row wrap;align-items: center;background-color: black;padding: 10px;width: 40px;">
+		<div id="button-icon2">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div id="animate-button-play" style="width: 0;height: 0;border-top: 15px solid transparent;border-left: 30px solid white;border-bottom: 15px solid transparent;display: none;margin: 0px 100px;transition: all 0.3s;"></div>
+		<div id="animate-button-flag-down" style="width: 150px;display: none;color: white;">Flag-Down</div>
+		<div id="animate-button-flag-up" style="width: 150px;display: none;color: white;">Flag-Up</div>
+		<div id="animate-button-flag-stop" style="width: 150px;display: none;color: white;">Flag-Stop</div>
+		<div id="animate-button-flag-toggle" style="width: 150px;display: none;color: white;">Flag-Show-Hide</div>
+		<div id="animate-button-back" style="color: white;display: none;font-size: 25px;letter-spacing: -7px;transition: all 0.3s;"> << </div>
+	</div>
+	<div id="loading-bar" style="width: 100%;height: 20px;background-color: rgba(255,255,255,0.5);border: 2px solid gray;box-sizing: border-box;position: absolute;z-index: 10;display: none;">
+		<div id="loading-bar-play" style="width: 10px;height: 100%;background-color: gray;position: relative;"></div>
+	</div>
+	<div id="animation-box">
+		<div id="tiang">
+			<div id="dasar-tiang"></div>
+			<div id="dasar-tiang2" style="width: 150px;height: 0;border-bottom: 40px solid black;border-right: 20px solid transparent;border-left: 20px solid transparent;position: absolute;bottom: -100px;left: -90px;opacity: 0;"></div>
+			<div class="flag" style="background-color: red;"></div>
+			<div class="flag" style="background-color: white;"></div>
+		</div>	
+		<div id="grass">
+		</div>
+		<div class="bld bld-1 bld-hide">
+			<div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div>
+		</div>
+		<div class="bld bld-2 bld-hide">
+			<div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div><div class="wdw wdw-m"></div>
+		</div>
+		<div class="bld bld-3 bld-hide">
+			<div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div>	
+		</div>
+		<div class="bld bld-4 bld-hide">
+			<div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div><div class="wdw wdw-s"></div>
+		</div>
+		<div class="mns">
+			<div class="mns-btm1 mns-hide"></div>
+			<div class="mns-btm2 pst-mddl"></div>
+			<div class="mns-mddl pst-mddl mns-hide"></div>
+			<div class="mns-top pst-mddl mns-hide"></div>
+			<div class="mns-rnd pst-mddl mns-hide"></div>
+			<div class="mns-trg pst-mddl"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// slide
+		$('#button-icon').click(function(){
+			$('#button').slideToggle("slow");
+		});
+		$("#slideDown").click(function(){
+			$('#up-down-main1').slideDown("fast");
+			$('#up-down-main2').slideUp("fast");
+		});
+		$("#slideUp").click(function(){
+			$('#up-down-main1').slideUp("fast");
+		});
+		$("#toggle").click(function(){
+			$('#up-down-main1').slideUp("fast");
+			$('#up-down-main2').slideToggle("fast");
+		});
+		// animate
+		$('#button-icon2').click(function(){
+			$('#animate-button').animate({width : '900px'},"slow");
+			$('#animate-button-back').slideDown('slow');
+			$('#animate-button-play').slideDown('slow');
+			$('#animate-button-flag-down').slideDown('slow');
+			$('#animate-button-flag-up').slideDown('slow');
+			$('#animate-button-flag-toggle').slideDown('slow');
+			$('#animate-button-flag-stop').slideDown('slow');
+		})
+		$('#animate-button-back').click(function(){
+			$('#animate-button').animate({width:'40px'},"slow");
+			$('#animate-button-back').slideUp('slow');
+			$('#animate-button-play').slideUp('slow');
+			$('#animate-button-flag-down').slideUp('slow');
+			$('#animate-button-flag-up').slideUp('slow');
+			$('#animate-button-flag-toggle').slideUp('slow');
+			$('#animate-button-flag-stop').slideUp('slow');
+		})
+		$('#animate-button-play').click(function(){
+			var animBox= $('#animation-box'),loadBar = $('#loading-bar'),loadBarPlay = $('#loading-bar-play'), tiang = $('#tiang'), dasar = $('#dasar-tiang'), dasar2 = $('#dasar-tiang2'), flag = $(".flag"), bld1 = $('.bld-1'), bld2 = $('.bld-2'), bld3 = $('.bld-3'), bld4 = $('.bld-4'), grs = $('#grass'), mnsBtm = $('.mns-btm1'), mnsBtm2 = $('.mns-btm2'), mnsMddl = $('.mns-mddl'), mnsTop = $('.mns-top'), mnsRnd = $('.mns-rnd'), mnsTrg = $('.mns-trg');
+			animBox.slideDown("slow");
+			loadBar.slideDown("fast");
+			loadBarPlay.animate({width: '100%'}, 11.8*1000);
+			grs.delay(0.7*1000).animate({width: '100%'},0.3*1000);
+			bld1.delay(1*1000).animate({height: '200px',bottom: '0px',opacity: '1'},0.7*1000);
+			bld2.delay(1.7*1000).animate({height: '450px',bottom: '0px',opacity: '1'},0.3*1000);
+			bld3.delay(2*1000).animate({height: '350px',bottom: '0px',opacity: '1'},0.3*1000);
+			bld4.delay(2.3*1000).animate({height: '310px',bottom: '0px',opacity: '1'},0.5*1000);
+			mnsBtm.delay(2.8*1000).animate({height: '12px'}, 0.4*1000);
+			mnsBtm2.delay(3.2*1000).animate({width: '100px', opacity: '1'}, 0.4*1000);
+			mnsMddl.delay(3.6*1000).animate({height: '330px'}, 0.7*1000);
+			mnsTop.delay(4.3*1000).animate({height: '10px'}, 0.2*1000);
+			mnsRnd.delay(4.5*1000).animate({height: '60px'}, 0.5*1000);
+			mnsTrg.delay(5*1000).animate({opacity: '1'}, 0.5*1000);
+
+			tiang.delay(5.5*1000).animate({width:'300px',height:'40px'},0.3*1000);
+			tiang.animate({left:'50%'},1.2*1000);
+			tiang.animate({width:'350px',height:'150px'},0.3*1000);
+			tiang.css("background-color","black");
+			tiang.animate({width:'13px',height:'10px'},0.5*1000);
+			tiang.animate({height:'400px'},0.7*1000);
+			dasar.animate({top:'400px',left:'-2px'},0)
+			dasar.delay(8.7*1000).slideDown("fast");
+			dasar.animate({width:'150px',left:'-70px'},0.5*1000);
+			dasar2.delay(9.2*1000).animate({opacity: '1'},0.5*1000);
+			flag.delay(9.5*1000).animate({width: '250px'},0.3*1000);
+			flag.animate({top: '10px'},2*1000);
+		});
+		$('#animate-button-flag-down').click(function(){
+			$(".flag").animate({top: '280px'},0.3*1000);
+		});
+		$('#animate-button-flag-up').click(function(){
+			$(".flag").animate({top: '10px'},1.5*1000);
+		});
+		$('#animate-button-flag-toggle').click(function(){
+			$(".flag").animate({width: 'toggle'},'fast');
+		});
+		$('#animate-button-flag-stop').click(function(){
+			$(".flag").stop();
+		});
+	});
+</script>
+</body>
+</html>

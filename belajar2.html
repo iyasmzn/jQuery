@@ -1,0 +1,80 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>Belajar2</title>
+   <style type="text/css">
+   button {
+     padding: 10px 20px;
+     color: white;
+     background-color: tomato;
+     border: none;
+     transition: all 0.3s;
+     text-transform: uppercase;
+   }
+ 		button:hover {
+     border-radius: 5px;
+     cursor: pointer;
+ 		}
+ 		#target {
+ 			width: 100px;
+ 			height: 100px;
+ 			background: violet;
+ 			margin: 30px;
+ 		}
+ 		#target-fade {
+ 			width: 100px;
+ 			height: 100px;
+ 			background: skyblue;
+ 			margin: 30px;
+ 		}
+ 	</style>
+ </head>
+ <body>
+ 	<button id="hide">Sembunyikan</button>
+ 	<button id="show">Tampilkan</button>
+
+ 	<div id="target"></div>
+
+  <hr>
+
+  <button id="fade-in">Fade In</button>
+  <button id="fade-out">Fade Out</button>
+  <button id="fade-toggle">Fade Toggle</button>
+  <button id="fade-to">Fade To</button>
+
+  <div id="target-fade"></div>
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+      // this code is for hide
+      $('#hide').click(function() {
+        $('#target').hide(1000);
+        $('#show').click();
+      });
+      $('#show').click(function() {
+        $('#target').show(1000);
+      });
+
+      //this code is for fade
+      $('#fade-in').click(function(){
+        $('#target-fade').fadeIn();
+      });
+      $('#fade-out').click(function(){
+        $('#target-fade').fadeOut();
+      });
+      $('#fade-toggle').click(function(){
+        $('#target-fade').fadeToggle();
+      });
+      $('#target-fade').mouseenter(function(){
+        $('#target-fade').fadeTo('fast', 0.5 );
+      });
+      $('#target-fade').mouseleave(function(){
+        $('#target-fade').fadeTo('slow', 1 );
+      });
+    });
+	</script> 
+ </body>
+ </html>

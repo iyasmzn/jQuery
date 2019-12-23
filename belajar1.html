@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Belajar jQuery 1</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<p class="jamal">test</p>
+	<button>Klik ini1!</button>
+	<button id="dobleh">Klik ini2!</button>
+	<div id="content">
+		<span>
+			<p>kabur</p>
+		</span>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready( function() {
+			$('button').click( function() {
+				alert('wowwowwow');
+			} );
+			$('#content span p').hover( function() {
+				$('.jamal').text('taufik');
+			} );
+		} );
+	</script>
+</body>
+</html>
