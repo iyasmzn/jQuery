@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var no 		= '01'; 
+	var mobil = {
+		warna: 'violet',
+		merek: 'Mercedez',
+		plat: `AA ${no} AA`, 
+		pintu: {
+			kaca: {
+				ukuran: '500x800',
+				warna: 'pilem',
+			},
+			gagang: true,
+			tombol: true,
+		},
+	};
+
+	var article = {
+		data: [
+			{
+				id: 1,
+				judul: 'mencari rezeki',
+				author: 'anang',
+			},
+			{
+				id: 2,
+				judul: 'mencari alasan',
+				author: 'ndx',
+			},
+			{
+				id: 3,
+				judul: 'mencari istri',
+				author: 'gomet',
+			},
+		],
+		meta: {
+			status: '200',
+		},
+	}
+	document.write(article.data[1].judul);
+	document.write('<br>');
+	document.write('<br>');
+
+	article.data.forEach( function(art) {
+		document.write(art.judul);
+		document.write('<br>');
+	} );
+
+</script>
+</body>
+</html>
